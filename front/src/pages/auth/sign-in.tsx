@@ -1,36 +1,38 @@
-import { Button } from '@/components/ui/button'
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useMutation } from '@tanstack/react-query'
-import { signIn } from '@/api/sign-in'
-import { useState } from 'react'
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useMutation } from "@tanstack/react-query";
+import { signIn } from "@/api/sign-in";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export interface SignInProps {
-  email: string
-  password: string
+export interface FormData {
+  email: string;
+  password: string;
 }
 
 export function SignIn() {
-  const [email, setEmail] = useState('')
-  const [password, setpassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const navigate = useNavigate();
 
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: signIn,
-  })
+  });
 
-  async function handleSignIn({ email, password }: SignInProps) {
+  async function handleSignIn({ email, password }: FormData) {
     try {
-      const response = await authenticate({ email, password })
-      console.log(response)
+      const response = await authenticate({ email, password });
+      console.log(response);
     } catch (error) {
-      console.log(`error: ${error}`)
+      console.log(`error: ${error}`);
     }
   }
   // {...service, [e.target.name] : e.target.value}}
@@ -58,5 +60,5 @@ export function SignIn() {
         </CardContent>
       </Card>
     </main>
-  )
+  );
 }
