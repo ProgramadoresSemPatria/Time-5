@@ -13,7 +13,7 @@ import { signIn } from "@/api/sign-in";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export interface FormData {
+export interface FormDataType {
   email: string;
   password: string;
 }
@@ -22,12 +22,16 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
+  const [formData, setFormData] = useState<FormDataType>({
+    email: "",
+    password: "",
+  });
 
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: signIn,
   });
 
-  async function handleSignIn({ email, password }: FormData) {
+  async function handleSignIn({ email, password }: FormDataType) {
     try {
       const response = await authenticate({ email, password });
       console.log(response);
