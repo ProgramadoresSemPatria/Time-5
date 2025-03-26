@@ -62,11 +62,23 @@ export function SignIn() {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
               <Label htmlFor="email">E-mail</Label>
-              <Input id="email" placeholder="exemplo@gmail.com" type="email" />
+              <Input
+                id="email"
+                placeholder="exemplo@gmail.com"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
             </div>
             <div className="my-5 flex flex-col gap-2">
               <Label htmlFor="password">Senha</Label>
-              <Input id="password" placeholder="password" type="password" />
+              <Input
+                id="password"
+                placeholder="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
             </div>
             <Button className="w-full bg-primary" onClick={() => {}}>
               Entrar
