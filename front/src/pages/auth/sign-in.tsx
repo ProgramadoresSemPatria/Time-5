@@ -45,7 +45,7 @@ export function SignIn() {
       console.log(formData);
 
       setTimeout(() => {
-        navigate("/home");
+        navigate("/");
       }, 2000);
     } catch (error) {}
   };
