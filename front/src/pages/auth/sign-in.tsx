@@ -59,17 +59,19 @@ export function SignIn() {
           <CardDescription>Utilize seu email e senha</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="email">E-mail</Label>
-            <Input id="email" placeholder="exemplo@gmail.com" type="email" />
-          </div>
-          <div className="my-5 flex flex-col gap-2">
-            <Label htmlFor="password">Senha</Label>
-            <Input id="password" placeholder="password" type="password" />
-          </div>
-          <Button className="w-full bg-primary" onClick={() => {}}>
-            Entrar
-          </Button>
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="email">E-mail</Label>
+              <Input id="email" placeholder="exemplo@gmail.com" type="email" />
+            </div>
+            <div className="my-5 flex flex-col gap-2">
+              <Label htmlFor="password">Senha</Label>
+              <Input id="password" placeholder="password" type="password" />
+            </div>
+            <Button className="w-full bg-primary" onClick={() => {}}>
+              Entrar
+            </Button>
+          </form>
         </CardContent>
       </Card>
     </main>
