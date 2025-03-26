@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/sign-in";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export interface FormDataType {
   email: string;
@@ -34,19 +35,20 @@ export function SignIn() {
     });
   };
 
-  const { mutateAsync: authenticate } = useMutation({
-    mutationFn: signIn,
-  });
-
-  async function handleSignIn({ email, password }: FormDataType) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
-      const response = await authenticate({ email, password });
-      console.log(response);
-    } catch (error) {
-      console.log(`error: ${error}`);
-    }
-  }
-  // {...service, [e.target.name] : e.target.value}}
+      const response = await axios.post(
+        "http://localhost:5173/login",
+        formData
+      );
+      console.log(formData);
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000);
+    } catch (error) {}
+  };
   return (
     <main className="flex w-full h-screen justify-center items-center">
       <Card>
