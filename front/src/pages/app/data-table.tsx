@@ -1,3 +1,5 @@
+/* este codigo utilizou ajuda de ia */
+
 import {
   ColumnDef,
   flexRender,
