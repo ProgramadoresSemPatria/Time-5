@@ -192,14 +192,15 @@ const CVManager: React.FC<CVManagerProps> = ({ userId }) => {
   }, [])
 
   return (
-    <div className="text-center md:px-60 md:h-full flex justify-center items-center md:mx-14">
-      <div className="cv-manager flex-col flex gap-5 ">
-        <div className="text-editor">
+    <div className="text-center md:px-60 md:h-full flex justify-center md:mx-8">
+      <div className="cv-manager flex-col flex gap-15 h-1/2 ">
+        <div className="text-editor pt-5">
           <ReactQuill
             ref={handleRef}
             value={content}
             onChange={setContent}
             modules={modules}
+            style={{ height: '80vh' }}
           />
         </div>
         <div className="mt-2 mx-4 flex space-x-4 justify-around">

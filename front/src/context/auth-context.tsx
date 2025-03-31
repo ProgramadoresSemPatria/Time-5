@@ -21,12 +21,7 @@ export const authContext = createContext({} as AuthContextProps)
 export const accessTokenKey = 'accessTokenTime5'
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const token = localStorage.getItem(accessTokenKey)
-
-    if (token) return true
-    return false
-  })
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
 
   const [user, setUser] = useState<User | null>(null)
 

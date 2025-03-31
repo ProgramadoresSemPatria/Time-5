@@ -9,7 +9,7 @@ export function AppLayout() {
           <SideBar />
         </div>
 
-        <div className="h-full w-full">
+        <div className="max-h-screen w-full">
           <Outlet />
         </div>
       </div>
