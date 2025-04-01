@@ -34,46 +34,35 @@
 
 ---
 
-## Installation and Setup
+# Installation and Setup
 
-### Step 1: Clone the Repository
-To get started, clone the repository to your local machine:
-
+Clone the repository
+``` bash
 git clone https://github.com/ProgramadoresSemPatria/Time-5.git
-
-
-Step 2: Install Dependencies
-Frontend
-Navigate to the front directory and install the required dependencies:
-
-cd front/
-npm install
-Backend
-Navigate to the back directory and install the backend dependencies:
-
+```
+## Install the dependencies in their respective folders: 
+``` bash cd front/ npm install
+cd ..
 cd back/
-npm install
+Npm install  
+```
 
+## Run a docker container to run PostgresSQL through docker compose:
 
-Step 3: Set Up PostgreSQL with Docker
-Start PostgreSQL using Docker Compose:
-
+``` bash
 cd back
 docker compose up
+```
 
-
-Step 4: Run Prisma Migrations
-Run the necessary Prisma migrations to set up the database:
-
+## Run prisma migrations
+``` bash
 npx prisma migrate dev
+```
 
-
-Step 5: Start the Server
-Start the development server:
-
+## Start server
+``` bash
 npm run dev
-
-
+``` 
 # API Routes
 
 
