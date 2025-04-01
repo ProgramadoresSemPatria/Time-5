@@ -20,17 +20,16 @@ This web application was created for the Borderless Community hackathon and is d
 Table of Contents
 Overview
 
-Tech Stack(#tech-stack)
+[Tech Stack](#tech-stack)
 
-Installation and Setup(#installation-and-setup)
+[Installation and Setup](#installation-and-setup)
 
-API Routes(#api-routes)
+[API Routes](#api-routes)
 
-Middleware(#middleware)
+[Middleware](#middleware)
 
-Error Handling(#error-handling)
+[Error Handling](#error-handling)
 
-Project Structure(#project-structure)
 
 
 
