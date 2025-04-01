@@ -17,8 +17,8 @@ This web application was created for the Borderless Community hackathon and is d
     * Export the completed resume to PDF format.
 
 
-Table of Contents
-Overview
+# Table of Contents
+### Overview
 
 [Tech Stack](#tech-stack)
 
