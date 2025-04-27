@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import {
   Briefcase,
   Home,
@@ -24,7 +24,7 @@ export default function DashboardSidebar() {
         <ul className="space-y-1">
           <li>
             <Link
-              href="/dashboard"
+              to="/dashboard"
               className="flex items-center gap-3 px-4 py-3 rounded-md bg-white/10 text-white hover:bg-white/20 transition-colors"
             >
               <Home className="h-5 w-5" />
@@ -33,7 +33,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              href="/dashboard/applications"
+              to="/dashboard/applications"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <Briefcase className="h-5 w-5" />
@@ -42,7 +42,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              href="/dashboard/interviews"
+              to="/dashboard/interviews"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <Calendar className="h-5 w-5" />
@@ -51,7 +51,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              href="/dashboard/resumes"
+              to="/dashboard/resumes"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <FileText className="h-5 w-5" />
@@ -60,7 +60,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              href="/dashboard/analytics"
+              to="/dashboard/analytics"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <BarChart2 className="h-5 w-5" />
@@ -69,7 +69,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              href="/dashboard/messages"
+              to="/dashboard/messages"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <MessageSquare className="h-5 w-5" />
@@ -83,7 +83,7 @@ export default function DashboardSidebar() {
         <ul className="space-y-1">
           <li>
             <Link
-              href="/dashboard/settings"
+              to="/dashboard/settings"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <Settings className="h-5 w-5" />
@@ -92,7 +92,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              href="/logout"
+              to="/logout"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <LogOut className="h-5 w-5" />
