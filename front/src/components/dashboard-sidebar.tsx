@@ -24,7 +24,7 @@ export default function DashboardSidebar() {
         <ul className="space-y-1">
           <li>
             <Link
-              to="/dashboard"
+              to="/"
               className="flex items-center gap-3 px-4 py-3 rounded-md bg-white/10 text-white hover:bg-white/20 transition-colors"
             >
               <Home className="h-5 w-5" />
@@ -33,11 +33,11 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              to="/dashboard/applications"
+              to="/profile-page"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <Briefcase className="h-5 w-5" />
-              Applications
+              My Profile
             </Link>
           </li>
           <li>
