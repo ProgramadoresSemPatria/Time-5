@@ -12,7 +12,7 @@ import {
 
 export default function DashboardSidebar() {
   return (
-    <div className="hidden md:flex flex-col w-64 bg-purple-gradient text-white min-h-screen">
+    <div className="hidden md:flex flex-col w-64 bg-gradient-to-b from-purple-700 to-purple-900 text-white min-h-screen">
       <div className="p-4 border-b border-purple-700">
         <div className="flex items-center gap-2">
           <Briefcase className="h-6 w-6" />
@@ -92,7 +92,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <Link
-              to="/logout"
+              href="/logout"
               className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
             >
               <LogOut className="h-5 w-5" />
