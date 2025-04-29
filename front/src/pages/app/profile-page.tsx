@@ -28,7 +28,6 @@ import {
   Edit,
   Save,
 } from "lucide-react";
-import DashboardSidebar from "@/components/dashboard-sidebar";
 import DashboardHeader from "@/components/dashboard-header";
 import SkillBadge from "@/components/skill-badge";
 import ExperienceItem from "@/components/experience-item";
@@ -126,8 +125,6 @@ export default function ProfilePage() {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <DashboardSidebar />
-
       <div className="flex-1">
         <DashboardHeader username="Luam" />
 
