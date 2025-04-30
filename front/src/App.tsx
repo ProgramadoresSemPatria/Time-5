@@ -8,6 +8,7 @@ import { SignUp } from './pages/auth/sign-up'
 import CVManager from './pages/app/cv-manager'
 import LandingPage from './pages/app/landing-page'
 import Sucesso from './pages/app/sucess'
+import Cancel from './pages/app/cancel'
 
 export function App() {
   const { isAuthenticated } = useContext(authContext)
@@ -30,6 +31,7 @@ export function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/success" element={<Sucesso />} />
+        <Route path="/cancel" element={<Cancel />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
