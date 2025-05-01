@@ -23,6 +23,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { toastSuccessStyle } from '@/lib/toast-success-style'
 import { toastErrorStyle } from '@/lib/toast-error-style'
 import { AxiosError } from 'axios'
+import StripeCheckout from './stripe-checkout'
 
 type JobData = Payment & {
   application_status?: string
@@ -264,6 +265,7 @@ export function Dashboard() {
         <h1 className="pl-5 md:pl-20 text-2xl md:text-4xl">
           Bem vindo(a), {firstUserName}!
         </h1>
+        <StripeCheckout />
       </div>
       <div className="flex justify-center items-center h-full w-full">
         <div className="container mx-auto py-10 w-full max-w-[90%]">
