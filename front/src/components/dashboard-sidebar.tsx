@@ -9,9 +9,17 @@ import {
   MessageSquare,
   LogOut,
 } from "lucide-react";
+import toast from "react-hot-toast";
+import { toastSuccessStyle } from "@/lib/toast-success-style";
+import { useContext } from "react";
+import { authContext } from "@/context/auth-context";
+import { useNavigate } from "react-router-dom";
 //@ TODO: IMPLEMENT LOGOUT FUNCTION
 
 export default function DashboardSidebar() {
+  const { signOut } = useContext(authContext);
+  const navigate = useNavigate();
+
   return (
     <div className="h-full min-h-screen hidden md:flex flex-col w-64 bg-gradient-to-b from-purple-700 to-purple-900 text-white">
       <div className="p-4 border-b border-purple-700">
@@ -130,13 +138,17 @@ export default function DashboardSidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/logout"
-              className="flex items-center gap-3 px-4 py-3 rounded-md text-white/80 hover:bg-white/10 transition-colors"
+            <button
+              onClick={() => {
+                signOut();
+                toast.success("See you later!", toastSuccessStyle);
+                navigate("/sign-in");
+              }}
+              className="flex items-center pl-3 rounded-lg transition-colors hover:text-foreground pt-10 gap-4 outline-none"
             >
               <LogOut className="h-5 w-5" />
               Logout
-            </NavLink>
+            </button>
           </li>
         </ul>
       </div>
