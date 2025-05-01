@@ -139,6 +139,7 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <button
+              type="button"
               onClick={() => {
                 signOut();
                 toast.success("See you later!", toastSuccessStyle);
