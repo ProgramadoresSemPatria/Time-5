@@ -1,17 +1,11 @@
-version: "3"
-
 services:
-  api-career:
-    image: bitnami/postgresql
+  postgres:
+    container_name: career-manager
+    image: postgres
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=time5
-      - POSTGRES_PASSWORD=base
-      - POSTGRES_DB=careermanager
-    volumes:
-      - postgres_data:/bitnami/postgresql
-    restart: unless-stopped
-
-volumes:
-  postgres_data:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: career-manager
+      PGDATA: /data/postgres
