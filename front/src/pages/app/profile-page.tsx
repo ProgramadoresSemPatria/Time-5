@@ -33,6 +33,7 @@ import SkillBadge from "@/components/skill-badge";
 import ExperienceItem from "@/components/experience-item";
 import EducationItem from "@/components/education-item";
 import ResumeItem from "@/components/resume-item";
+import { useForm } from "react-hook-form";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -123,6 +124,25 @@ export default function ProfilePage() {
     },
   ];
 
+  type ProfileFormData = {
+    name: string;
+    jobTitle: string;
+    email: string;
+    phone: string;
+    location: string;
+    website: string;
+  };
+
+  const handleFormSubmit = (formData) => {
+    console.log(formData);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ProfileFormData>();
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       <div className="flex-1">
@@ -155,6 +175,70 @@ export default function ProfilePage() {
             </Button>
           </div>
 
+          <form onSubmit={handleSubmit(handleFormSubmit)}>
+            <Card className="lg:col-span-2 border-purple-100">
+              <Button type="submit">submit button</Button>
+              <CardHeader className="bg-purple-50 border-b border-purple-100">
+                <CardTitle>Personal Information</CardTitle>
+                <CardDescription>
+                  Your basic information visible to recruiters
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName">Full Name</Label>
+                    <Input
+                      id="fullName"
+                      {...register("name")}
+                      className={isEditing ? "border-purple-200" : ""}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="jobTitle">Job Title</Label>
+                    <Input
+                      id="jobTitle"
+                      {...register("jobTitle")}
+                      className={isEditing ? "border-purple-200" : ""}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      {...register("email")}
+                      type="email"
+                      className={isEditing ? "border-purple-200" : ""}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      {...register("phone")}
+                      className={isEditing ? "border-purple-200" : ""}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="location">Location</Label>
+                    <Input
+                      id="location"
+                      {...register("location")}
+                      className={isEditing ? "border-purple-200" : ""}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="website">Website</Label>
+                    <Input
+                      id="website"
+                      {...register("website")}
+                      className={isEditing ? "border-purple-200" : ""}
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </form>
           <Tabs defaultValue="personal" className="w-full">
             <TabsList className="bg-white border border-purple-100 mb-6">
               <TabsTrigger value="personal">Personal Info</TabsTrigger>
@@ -177,7 +261,7 @@ export default function ProfilePage() {
                     <Avatar className="h-32 w-32 border-4 border-purple-200 mb-4">
                       <AvatarImage src="/placeholder.svg" alt="Luam Silva" />
                       <AvatarFallback className="bg-purple-100 text-purple-800 text-2xl">
-                        LS
+                        LR
                       </AvatarFallback>
                     </Avatar>
                     {isEditing && (
@@ -194,74 +278,6 @@ export default function ProfilePage() {
                         </Button>
                       </div>
                     )}
-                  </CardContent>
-                </Card>
-
-                <Card className="lg:col-span-2 border-purple-100">
-                  <CardHeader className="bg-purple-50 border-b border-purple-100">
-                    <CardTitle>Personal Information</CardTitle>
-                    <CardDescription>
-                      Your basic information visible to recruiters
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <div className="grid gap-6 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <Label htmlFor="fullName">Full Name</Label>
-                        <Input
-                          id="fullName"
-                          defaultValue="Luam Ramlow"
-                          disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="jobTitle">Job Title</Label>
-                        <Input
-                          id="jobTitle"
-                          defaultValue="Senior Frontend Developer"
-                          disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          defaultValue="luam.silva@example.com"
-                          disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input
-                          id="phone"
-                          defaultValue="+55 11 98765-4321"
-                          disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="location">Location</Label>
-                        <Input
-                          id="location"
-                          defaultValue="São Paulo, Brazil"
-                          disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="website">Website</Label>
-                        <Input
-                          id="website"
-                          defaultValue="https://luamsilva.dev"
-                          disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
-                        />
-                      </div>
-                    </div>
                   </CardContent>
                 </Card>
 
