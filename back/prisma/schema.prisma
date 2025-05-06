@@ -21,6 +21,11 @@ model User {
   email    String @unique
   password String
 
+  phone    String?
+  location String?
+  website  String?
+  jobTitle String?
+
   jobs Job[]
 
   @@map("users")
@@ -42,3 +47,4 @@ model Job {
 
   @@map("job")
 }
+
