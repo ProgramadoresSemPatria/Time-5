@@ -1,17 +1,17 @@
-import { Job } from '@prisma/client'
+import { JobStatus, KanbanJob } from '@prisma/client'
 import { JobsRepository } from '@/repositories/jobs-repository'
 import { UsersRepository } from '@/repositories/users-repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found'
 
-interface FetchJobsHistoryUseCaseRequest {
+interface FetchKanbanJobsRequest {
   userId: string
 }
 
-interface FetchJobsHistoryUseCaseResponse {
-  jobs: Job[]
+interface FetchKanbanJobsResponse {
+  jobs: Record<JobStatus, KanbanJob[]>
 }
 
-export class FetchJobsUseCase {
+export class FetchKanbanJobs {
   constructor(
     private jobsrepository: JobsRepository,
     private usersRepository: UsersRepository,
@@ -19,14 +19,14 @@ export class FetchJobsUseCase {
 
   async execute({
     userId,
-  }: FetchJobsHistoryUseCaseRequest): Promise<FetchJobsHistoryUseCaseResponse> {
+  }: FetchKanbanJobsRequest): Promise<FetchKanbanJobsResponse> {
     const doesUserExists = this.usersRepository.findById(userId)
 
     if (!doesUserExists) {
       throw new ResourceNotFoundError()
     }
 
-    const jobs = await this.jobsrepository.findManyByUserId(userId)
+    const jobs = await this.jobsrepository.findManyKanbanByUserId(userId)
 
     return {
       jobs,

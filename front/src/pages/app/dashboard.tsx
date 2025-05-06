@@ -4,6 +4,7 @@ import { JobCard } from '@/components/job-card/job-card'
 import { JobCard as JobCardType } from '@/components/job-card/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { fetchKanbanJobs } from '@/services/jobs'
 import {
   DndContext,
   DragOverEvent,
@@ -14,26 +15,79 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Search } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 export function Dashboard() {
   const [activeJob, setActiveJob] = useState<JobCardType | null>(null)
   const [columns] = useState<Column[]>([
-    { id: 'id-column-01', title: 'Applied' },
-    { id: 'id-column-02', title: 'Interviewing' },
-    { id: 'id-column-03', title: 'Offered' },
-    { id: 'id-column-04', title: 'Rejected' },
-    { id: 'id-column-05', title: 'Accepted' },
+    { id: 'APPLIED', title: 'Applied' },
+    { id: 'INTERVIEWING', title: 'Interviewing' },
+    { id: 'OFFERED', title: 'Offered' },
+    { id: 'REJECTED', title: 'Rejected' },
+    { id: 'ACCEPTED', title: 'Accepted' },
   ])
   const [jobCard, setJobCard] = useState<JobCardType[]>([
-    { id: 'id-job-01', columnId: 'id-column-02', content: 'job na amazon' },
-    { id: 'id-job-02', columnId: 'id-column-01', content: 'job no carrefour' },
-    { id: 'id-job-03', columnId: 'id-column-03', content: 'job na tesla' },
-    { id: 'id-job-04', columnId: 'id-column-03', content: 'job na sla02' },
-    { id: 'id-job-05', columnId: 'id-column-03', content: 'job na sla03' },
+    { id: 'APPLIED', columnId: 'id-column-02', content: 'job na amazon' },
+    {
+      id: 'INTERVIEWING',
+      columnId: 'id-column-01',
+      content: 'job no carrefour',
+    },
+    { id: 'OFFERED', columnId: 'id-column-03', content: 'job na sla02' },
+    { id: 'REJECTED', columnId: 'id-column-03', content: 'job na tesla' },
+    { id: 'ACCEPTED', columnId: 'id-column-03', content: 'job na sla03' },
   ])
+
+  type JobStatus =
+    | 'APPLIED'
+    | 'INTERVIEWING'
+    | 'OFFERED'
+    | 'REJECTED'
+    | 'ACCEPTED'
+
+  type KanbanJob = {
+    id: string
+    userId: string
+    jobId: string
+    status: JobStatus
+    position: number
+  }
+
+  type FetchKanbanJobsResponse = {
+    jobs: Record<JobStatus, KanbanJob[]>
+  }
+
+  const fetchKanbanJobsMutation = useMutation()
+
+  const { data, isSuccess } = useQuery<FetchKanbanJobsResponse>({
+    queryKey: ['jobCards'],
+    queryFn: () => fetchKanbanJobs,
+  })
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      const jobsData = data.jobs
+
+      const allJobCards: JobCardType[] = []
+
+      Object.entries(jobsData).forEach(([status, jobs]) => {
+        const sortedJobs = [...jobs].sort((a, b) => a.position - b.position)
+
+        sortedJobs.forEach((job) => {
+          allJobCards.push({
+            id: job.jobId,
+            columnId: status,
+            content: job.jobId,
+          })
+        })
+      })
+
+      setJobCard(allJobCards)
+    }
+  }, [isSuccess, data])
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -50,9 +104,7 @@ export function Dashboard() {
   }
 
   function onDragEnd() {
-    // const { active } = event
     setActiveJob(null)
-    // console.log(jobCard.findIndex((job) => job.id === active.id))
   }
 
   function onDragOver(event: DragOverEvent) {

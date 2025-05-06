@@ -1,14 +1,14 @@
 import { PrismaJobsRepository } from '@/repositories/prisma/prisma-jobs-repository'
 import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
-import { FetchJobsUseCase } from '../fetch-jobs'
+import { FetchKanbanJobs } from '../fetch-kanban-jobs'
 
-export async function makeFetchJobsUseCase() {
+export async function makeFetchKanbanJobsUseCase() {
   const prismaJobsRepository = new PrismaJobsRepository()
   const prismaUsersRepository = new PrismaUsersRepository()
-  const fetchJobsHistoryUseCase = new FetchJobsUseCase(
+  const useCase = new FetchKanbanJobs(
     prismaJobsRepository,
     prismaUsersRepository,
   )
 
-  return fetchJobsHistoryUseCase
+  return useCase
 }

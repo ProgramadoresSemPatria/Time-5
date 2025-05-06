@@ -42,3 +42,15 @@ model Job {
 
   @@map("job")
 }
+
+model KanbanJob {
+  id String @id @default(uuid())
+
+  userId String
+  jobId  String
+
+  status   JobStatus
+  position Int
+
+  @@unique([userId, jobId])
+}
