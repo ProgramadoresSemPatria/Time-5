@@ -7,6 +7,12 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
   JWT_SECRET: z.string(),
   PORT: z.coerce.number().default(3333),
+
+  STRIPE_WEBHOOK_SECRET: z.string(),
+  STRIPE_SECRET_KEY: z.string(),
+  STRIPE_PRICE_ID: z.string(),
+  STRIPE_SUBSCRIPTION_PRICE_ID: z.string(),
+  VITE_PUBLIC_STRIPE_PUB_KEY: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

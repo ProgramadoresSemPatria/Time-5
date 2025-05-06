@@ -5,6 +5,7 @@ import { env } from './env'
 import { jobsRoutes } from './http/controllers/jobs/routes'
 import fastifyCors from '@fastify/cors'
 import { ZodError } from 'zod'
+import { stripeRoutes } from './http/controllers/stripe/routes'
 
 export const app = fastify()
 
@@ -19,6 +20,7 @@ app.register(fastifyCors, {
 
 app.register(userRoutes)
 app.register(jobsRoutes)
+app.register(stripeRoutes)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
