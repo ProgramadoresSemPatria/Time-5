@@ -1,7 +1,7 @@
 import { JobStatus, KanbanJob } from '@prisma/client'
-import { JobsRepository } from '@/repositories/jobs-repository'
 import { UsersRepository } from '@/repositories/users-repository'
 import { ResourceNotFoundError } from '@/errors/resource-not-found'
+import { KanbanRepository } from '@/repositories/kanban-respostory'
 
 interface FetchKanbanJobsRequest {
   userId: string
@@ -13,8 +13,8 @@ interface FetchKanbanJobsResponse {
 
 export class FetchKanbanJobs {
   constructor(
-    private jobsrepository: JobsRepository,
     private usersRepository: UsersRepository,
+    private kanbanRepository: KanbanRepository,
   ) {}
 
   async execute({
@@ -26,7 +26,7 @@ export class FetchKanbanJobs {
       throw new ResourceNotFoundError()
     }
 
-    const jobs = await this.jobsrepository.findManyKanbanByUserId(userId)
+    const jobs = await this.kanbanRepository.findManyKanbanByUserId(userId)
 
     return {
       jobs,
