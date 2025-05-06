@@ -4,6 +4,7 @@ import { JobCard } from '@/components/job-card/job-card'
 import { JobCard as JobCardType } from '@/components/job-card/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+
 import { fetchJobs, fetchKanbanJobs, updateKanbanJobs } from '@/services/jobs'
 import {
   DndContext,

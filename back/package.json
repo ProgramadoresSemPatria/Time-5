@@ -28,19 +28,20 @@
   },
   "dependencies": {
     "@fastify/cors": "11.0.1",
-    "tsx": "^4.19.3",
-    "typescript": "5.8.2",
-    "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.0.9",
-    "@types/node": "^22.13.13",
     "@fastify/jwt": "9.1.0",
     "@prisma/client": "6.5.0",
+    "@types/node": "^22.13.13",
     "bcryptjs": "3.0.2",
     "dotenv": "^16.4.7",
     "fastify": "5.2.1",
     "pg": "8.14.1",
     "prisma": "6.5.0",
-    "zod": "^3.24.2",
-    "tsup": "8.4.0"
+    "stripe": "18.0.0",
+    "tsup": "8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "5.8.2",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.0.9",
+    "zod": "^3.24.2"
   }
 }
