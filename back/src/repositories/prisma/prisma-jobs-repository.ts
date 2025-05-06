@@ -1,4 +1,4 @@
-import { Prisma, Job, JobStatus, KanbanJob } from '@prisma/client'
+import { Prisma, Job } from '@prisma/client'
 import { JobsRepository } from '../jobs-repository'
 import { prisma } from '../../lib/prisma'
 
@@ -9,34 +9,6 @@ export class PrismaJobsRepository implements JobsRepository {
     })
 
     return jobs
-  }
-
-  async findManyKanbanByUserId(
-    userId: string,
-  ): Promise<Record<JobStatus, KanbanJob[]>> {
-    const kanbanjobs = await prisma.kanbanJob.findMany({
-      where: {
-        userId,
-      },
-    })
-
-    const profileStatuses: JobStatus[] = [
-      'APPLIED',
-      'INTERVIEWING',
-      'OFFERED',
-      'REJECTED',
-      'ACCEPTED',
-    ]
-
-    const formattedStatus = profileStatuses.reduce(
-      (acc, status) => {
-        acc[status] = kanbanjobs.filter((job) => job.status === status)
-        return acc
-      },
-      {} as Record<JobStatus, KanbanJob[]>,
-    )
-
-    return formattedStatus
   }
 
   async update(id: string, data: Prisma.JobUpdateInput): Promise<Job> {
