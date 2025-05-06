@@ -4,7 +4,7 @@ import { JobCard } from '@/components/job-card/job-card'
 import { JobCard as JobCardType } from '@/components/job-card/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { fetchKanbanJobs } from '@/services/jobs'
+import { fetchJobs, fetchKanbanJobs, updateKanbanJobs } from '@/services/jobs'
 import {
   DndContext,
   DragOverEvent,
@@ -16,8 +16,8 @@ import {
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { Search } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { Plus, Search } from 'lucide-react'
+import { useState } from 'react'
 import { createPortal } from 'react-dom'
 
 export function Dashboard() {
@@ -29,46 +29,21 @@ export function Dashboard() {
     { id: 'REJECTED', title: 'Rejected' },
     { id: 'ACCEPTED', title: 'Accepted' },
   ])
-  const [jobCard, setJobCard] = useState<JobCardType[]>([
-    { id: 'APPLIED', columnId: 'id-column-02', content: 'job na amazon' },
-    {
-      id: 'INTERVIEWING',
-      columnId: 'id-column-01',
-      content: 'job no carrefour',
-    },
-    { id: 'OFFERED', columnId: 'id-column-03', content: 'job na sla02' },
-    { id: 'REJECTED', columnId: 'id-column-03', content: 'job na tesla' },
-    { id: 'ACCEPTED', columnId: 'id-column-03', content: 'job na sla03' },
-  ])
+  const [jobCard, setJobCard] = useState<JobCardType[]>([])
 
-  type JobStatus =
-    | 'APPLIED'
-    | 'INTERVIEWING'
-    | 'OFFERED'
-    | 'REJECTED'
-    | 'ACCEPTED'
-
-  type KanbanJob = {
-    id: string
-    userId: string
-    jobId: string
-    status: JobStatus
-    position: number
-  }
-
-  type FetchKanbanJobsResponse = {
-    jobs: Record<JobStatus, KanbanJob[]>
-  }
-
-  const fetchKanbanJobsMutation = useMutation()
-
-  const { data, isSuccess } = useQuery<FetchKanbanJobsResponse>({
-    queryKey: ['jobCards'],
-    queryFn: () => fetchKanbanJobs,
+  const updateKanbanJobsMutations = useMutation({
+    mutationFn: updateKanbanJobs,
   })
 
-  useEffect(() => {
-    if (isSuccess && data) {
+  const fetchJobsMutation = useMutation({
+    mutationFn: fetchJobs,
+  })
+
+  const fetchKanbanJobsMutation = useMutation({
+    mutationFn: fetchKanbanJobs,
+    onSuccess: async (data) => {
+      const fetchedJobsData = await fetchJobsMutation.mutateAsync()
+
       const jobsData = data.jobs
 
       const allJobCards: JobCardType[] = []
@@ -77,17 +52,27 @@ export function Dashboard() {
         const sortedJobs = [...jobs].sort((a, b) => a.position - b.position)
 
         sortedJobs.forEach((job) => {
+          const correspondentJobIndex =
+            fetchedJobsData.jobs.findIndex(
+              (jobinfo) => jobinfo.id === job.jobId,
+            ) ?? null
+
           allJobCards.push({
             id: job.jobId,
             columnId: status,
-            content: job.jobId,
+            content: fetchedJobsData.jobs[correspondentJobIndex].companyName,
           })
         })
       })
 
       setJobCard(allJobCards)
-    }
-  }, [isSuccess, data])
+    },
+  })
+
+  useQuery({
+    queryKey: ['jobCards'],
+    queryFn: async () => fetchKanbanJobsMutation.mutateAsync(),
+  })
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -105,6 +90,8 @@ export function Dashboard() {
 
   function onDragEnd() {
     setActiveJob(null)
+    updateKanbanJobsMutations.mutate(jobCard)
+    console.log(jobCard)
   }
 
   function onDragOver(event: DragOverEvent) {
@@ -147,32 +134,42 @@ export function Dashboard() {
   }
   // 6912A9
   return (
-    <div className="flex flex-col min-h-screen w-full items-center m-auto bg-white">
-      <div className="rounded-lg border border-muted p-4 pb-8 mt-2 shadow-sm bg-[#dcb7fa]/30">
+    <div className="flex flex-col min-h-screen w-full items-center m-auto bg-slate-50">
+      <div className="rounded-xl border border-slate-200 p-6 pb-8 mt-2 shadow-sm bg-white w-[98%]">
         <DndContext
           onDragStart={OnDragStart}
           onDragEnd={onDragEnd}
           onDragOver={onDragOver}
           sensors={sensors}
         >
-          <div className="w-full flex justify-center pt-6 gap-2">
+          <div className="w-full flex justify-center pt-2 gap-3">
             <div className="relative w-1/3">
-              <Input className="pr-10 !bg-white" placeholder="Search jobs" />
-              <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                className="pr-10 bg-slate-50 border-slate-200 rounded-lg focus-visible:ring-violet-500"
+                placeholder="Search jobs"
+              />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             </div>
-            <Button className="bg-[#6912A9] hover:bg-[#551385]">
+            <Button className="bg-violet-600 hover:bg-violet-700 rounded-lg flex items-center gap-2">
+              <Plus className="h-4 w-4" />
               Add new job
             </Button>
           </div>
-          <div className="mt-12 flex gap-6">
+
+          <div className="mt-7 flex gap-4">
             {columns.map((col) => (
-              <ColumnContainer
-                column={col}
-                key={col.id}
-                jobs={jobCard.filter((job) => job.columnId === col.id)}
-              />
+              <div key={col.id} className="flex-1">
+                <div className="mb-3 font-medium text-sm text-slate-500 uppercase tracking-wide">
+                  {col.title}
+                </div>
+                <ColumnContainer
+                  column={col}
+                  jobs={jobCard.filter((job) => job.columnId === col.id)}
+                />
+              </div>
             ))}
           </div>
+
           {createPortal(
             <DragOverlay>
               {activeJob && <JobCard job={activeJob} />}

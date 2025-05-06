@@ -29,8 +29,7 @@ export const ColumnContainer = (props: Props) => {
         ref={setNodeRef}
         className="relative h-[590px] w-[220px] p-4 bg-[#914fe7] rounded-xl flex flex-col gap-y-4 overflow-y-auto"
       >
-        <h2 className="text-white">{column.title}</h2>
-        <div className="absolute top-[40px] left-0 right-0 bottom-0 bg-[radial-gradient(rgb(0_0_0_/_0.2)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+        <div className="absolute top-[0px] left-0 right-0 bottom-0 bg-[radial-gradient(rgb(0_0_0_/_0.2)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
         {jobs.map((job) => (
           <JobCardComponent key={job.id} job={job} />
         ))}

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from 'react-router-dom'
 import {
   Briefcase,
   Home,
@@ -8,17 +8,16 @@ import {
   Calendar,
   MessageSquare,
   LogOut,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { toastSuccessStyle } from "@/lib/toast-success-style";
-import { useContext } from "react";
-import { authContext } from "@/context/auth-context";
-import { useNavigate } from "react-router-dom";
-//@ TODO: IMPLEMENT LOGOUT FUNCTION
+} from 'lucide-react'
+import toast from 'react-hot-toast'
+import { toastSuccessStyle } from '@/lib/toast-success-style'
+import { useContext } from 'react'
+import { authContext } from '@/context/auth-context'
+// @ TODO: IMPLEMENT LOGOUT FUNCTION
 
 export default function DashboardSidebar() {
-  const { signOut } = useContext(authContext);
-  const navigate = useNavigate();
+  const { signOut } = useContext(authContext)
+  const navigate = useNavigate()
 
   return (
     <div className="h-full min-h-screen hidden md:flex flex-col w-64 bg-gradient-to-b from-purple-700 to-purple-900 text-white">
@@ -37,8 +36,8 @@ export default function DashboardSidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/80 hover:bg-white/10"
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:bg-white/10'
                 }`
               }
             >
@@ -52,8 +51,8 @@ export default function DashboardSidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/80 hover:bg-white/10"
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:bg-white/10'
                 }`
               }
             >
@@ -68,8 +67,8 @@ export default function DashboardSidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/80 hover:bg-white/10"
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:bg-white/10'
                 }`
               }
             >
@@ -83,8 +82,8 @@ export default function DashboardSidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/80 hover:bg-white/10"
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:bg-white/10'
                 }`
               }
             >
@@ -98,8 +97,8 @@ export default function DashboardSidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/80 hover:bg-white/10"
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:bg-white/10'
                 }`
               }
             >
@@ -109,13 +108,13 @@ export default function DashboardSidebar() {
           </li>
           <li>
             <NavLink
-              //@TODO: THIS IS AN EXAMPLE. LATER WE WILL DECIDE WHICH SECTION WILL BE HERE.
+              // @TODO: THIS IS AN EXAMPLE. LATER WE WILL DECIDE WHICH SECTION WILL BE HERE.
               to="/messages"
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/80 hover:bg-white/10"
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/80 hover:bg-white/10'
                 }`
               }
             >
@@ -141,9 +140,9 @@ export default function DashboardSidebar() {
             <button
               type="button"
               onClick={() => {
-                signOut();
-                toast.success("See you later!", toastSuccessStyle);
-                navigate("/sign-in");
+                signOut()
+                toast.success('See you later!', toastSuccessStyle)
+                navigate('/sign-in')
               }}
               className="flex items-center pl-3 rounded-lg transition-colors hover:text-foreground pt-10 gap-4 outline-none"
             >
@@ -154,5 +153,5 @@ export default function DashboardSidebar() {
         </ul>
       </div>
     </div>
-  );
+  )
 }
