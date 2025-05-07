@@ -133,7 +133,7 @@ export default function ProfilePage() {
     website: string;
   };
 
-  const handleFormSubmit = (formData) => {
+  const handleFormSubmit = (formData: ProfileFormData) => {
     console.log(formData);
   };
 
@@ -187,8 +187,8 @@ export default function ProfilePage() {
               <CardContent className="pt-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input
+                    <Label htmlFor="name">Full Name</Label>
+                    <input
                       id="fullName"
                       {...register("name")}
                       className={isEditing ? "border-purple-200" : ""}
