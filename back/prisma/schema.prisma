@@ -20,12 +20,27 @@ model User {
   name     String
   email    String @unique
   password String
+  phone String?
+  location String?
+  website String?
+  profile Profile?
 
   jobs Job[]
 
   @@map("users")
 }
 
+  // @TODO: transfer profile data for user model
+model Profile {
+  id  String @id @default(cuid())
+  phone String?
+  location String?
+  website String?
+  userId String @unique
+  updatedAt DateTime @updatedAt
+user  User @relation(fields: [userId], references: [id])
+  
+}
 model Job {
   id                 String    @id @default(uuid())
   companyName        String
