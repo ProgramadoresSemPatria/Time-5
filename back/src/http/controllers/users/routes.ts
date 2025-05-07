@@ -4,6 +4,7 @@ import { signIn } from '@/http/controllers/users/sign-in'
 import { fetchUser } from './fetch-user'
 import { verifyJWT } from '@/middlewares/verify-jwt'
 import { saveCv } from './save-cv'
+import { updateProfile } from './update'
 
 export async function userRoutes(app: FastifyInstance) {
   app.post('/sign-up', signUp)
@@ -11,4 +12,6 @@ export async function userRoutes(app: FastifyInstance) {
 
   app.get('/user', { onRequest: [verifyJWT] }, fetchUser)
   app.patch('/cv', { onRequest: [verifyJWT] }, saveCv)
+
+  app.put('/profile', { onRequest: [verifyJWT] }, updateProfile)
 }

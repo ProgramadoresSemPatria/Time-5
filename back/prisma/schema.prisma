@@ -16,31 +16,21 @@ enum JobStatus {
 }
 
 model User {
-  id       String @id @default(uuid())
+  id       String  @id @default(uuid())
   name     String
-  email    String @unique
+  email    String  @unique
   password String
-  phone String?
+  phone    String?
   location String?
-  website String?
-  profile Profile?
+  website  String?
 
   jobs Job[]
 
   @@map("users")
 }
 
-  // @TODO: transfer profile data for user model
-model Profile {
-  id  String @id @default(cuid())
-  phone String?
-  location String?
-  website String?
-  userId String @unique
-  updatedAt DateTime @updatedAt
-user  User @relation(fields: [userId], references: [id])
-  
-}
+// @TODO: transfer profile data for user model
+
 model Job {
   id                 String    @id @default(uuid())
   companyName        String

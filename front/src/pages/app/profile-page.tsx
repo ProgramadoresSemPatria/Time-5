@@ -1,22 +1,22 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Textarea } from '@/components/ui/textarea'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { Switch } from '@/components/ui/switch'
+import { Separator } from '@/components/ui/separator'
 import {
   Globe,
   Linkedin,
@@ -27,121 +27,117 @@ import {
   Upload,
   Edit,
   Save,
-} from "lucide-react";
-import DashboardHeader from "@/components/dashboard-header";
-import SkillBadge from "@/components/skill-badge";
-import ExperienceItem from "@/components/experience-item";
-import EducationItem from "@/components/education-item";
-import ResumeItem from "@/components/resume-item";
-import { useForm } from "react-hook-form";
+} from 'lucide-react'
+import DashboardHeader from '@/components/dashboard-header'
+import SkillBadge from '@/components/skill-badge'
+import ExperienceItem from '@/components/experience-item'
+import EducationItem from '@/components/education-item'
+import ResumeItem from '@/components/resume-item'
+import { useForm } from 'react-hook-form'
 
 export default function ProfilePage() {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
 
   const skills = [
-    "React",
-    "TypeScript",
-    "Next.js",
-    "Node.js",
-    "JavaScript",
-    "UI/UX Design",
-    "CSS",
-    "HTML",
-    "Git",
-    "Agile",
-    "Project Management",
-  ];
+    'React',
+    'TypeScript',
+    'Next.js',
+    'Node.js',
+    'JavaScript',
+    'UI/UX Design',
+    'CSS',
+    'HTML',
+    'Git',
+    'Agile',
+    'Project Management',
+  ]
 
   const experiences = [
     {
       id: 1,
-      title: "Senior Frontend Developer",
-      company: "TechCorp",
-      location: "São Paulo, Brazil",
-      startDate: "Jan 2022",
-      endDate: "Present",
+      title: 'Senior Frontend Developer',
+      company: 'TechCorp',
+      location: 'São Paulo, Brazil',
+      startDate: 'Jan 2022',
+      endDate: 'Present',
       description:
         "Led the development of the company's main product using React and TypeScript. Implemented new features and improved performance by 40%.",
     },
     {
       id: 2,
-      title: "Frontend Developer",
-      company: "InnovateLabs",
-      location: "Remote",
-      startDate: "Mar 2020",
-      endDate: "Dec 2021",
+      title: 'Frontend Developer',
+      company: 'InnovateLabs',
+      location: 'Remote',
+      startDate: 'Mar 2020',
+      endDate: 'Dec 2021',
       description:
-        "Worked on multiple client projects using React, Next.js, and various frontend technologies.",
+        'Worked on multiple client projects using React, Next.js, and various frontend technologies.',
     },
     {
       id: 3,
-      title: "Web Developer",
-      company: "StartupBR",
-      location: "Rio de Janeiro, Brazil",
-      startDate: "Jun 2018",
-      endDate: "Feb 2020",
+      title: 'Web Developer',
+      company: 'StartupBR',
+      location: 'Rio de Janeiro, Brazil',
+      startDate: 'Jun 2018',
+      endDate: 'Feb 2020',
       description:
-        "Developed and maintained the company website and internal tools.",
+        'Developed and maintained the company website and internal tools.',
     },
-  ];
+  ]
 
   const education = [
     {
       id: 1,
-      degree: "Bachelor of Computer Science",
-      institution: "Federal University of Rio de Janeiro",
-      location: "Rio de Janeiro, Brazil",
-      startDate: "2014",
-      endDate: "2018",
-      description: "Focused on web development and software engineering.",
+      degree: 'Bachelor of Computer Science',
+      institution: 'Federal University of Rio de Janeiro',
+      location: 'Rio de Janeiro, Brazil',
+      startDate: '2014',
+      endDate: '2018',
+      description: 'Focused on web development and software engineering.',
     },
     {
       id: 2,
-      degree: "Full Stack Web Development Bootcamp",
-      institution: "Coding Academy",
-      location: "Online",
-      startDate: "2019",
-      endDate: "2019",
+      degree: 'Full Stack Web Development Bootcamp',
+      institution: 'Coding Academy',
+      location: 'Online',
+      startDate: '2019',
+      endDate: '2019',
       description:
-        "Intensive 12-week program covering modern web development technologies.",
+        'Intensive 12-week program covering modern web development technologies.',
     },
-  ];
+  ]
 
   const resumes = [
     {
       id: 1,
-      name: "Luam_Silva_Resume_Frontend.pdf",
-      lastUpdated: "April 20, 2025",
-      size: "1.2 MB",
+      name: 'Luam_Silva_Resume_Frontend.pdf',
+      lastUpdated: 'April 20, 2025',
+      size: '1.2 MB',
       isPrimary: true,
     },
     {
       id: 2,
-      name: "Luam_Silva_Resume_Full_Stack.pdf",
-      lastUpdated: "March 15, 2025",
-      size: "1.3 MB",
+      name: 'Luam_Silva_Resume_Full_Stack.pdf',
+      lastUpdated: 'March 15, 2025',
+      size: '1.3 MB',
       isPrimary: false,
     },
-  ];
+  ]
 
   type ProfileFormData = {
-    name: string;
-    jobTitle: string;
-    email: string;
-    phone: string;
-    location: string;
-    website: string;
-  };
+    name: string
+    jobTitle: string
+    email: string
+    phone: string
+    location: string
+    website: string
+  }
 
   const handleFormSubmit = (formData: ProfileFormData) => {
-    console.log(formData);
-  };
+    console.log(formData)
+  }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ProfileFormData>();
+  const { register, handleSubmit } = useForm<ProfileFormData>()
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -159,8 +155,8 @@ export default function ProfilePage() {
               </p>
             </div>
             <Button
-              variant={isEditing ? "outline" : "default"}
-              className={isEditing ? "" : "bg-purple-600 hover:bg-purple-700"}
+              variant={isEditing ? 'outline' : 'default'}
+              className={isEditing ? '' : 'bg-purple-600 hover:bg-purple-700'}
               onClick={() => setIsEditing(!isEditing)}
             >
               {isEditing ? (
@@ -190,49 +186,49 @@ export default function ProfilePage() {
                     <Label htmlFor="name">Full Name</Label>
                     <input
                       id="fullName"
-                      {...register("name")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('name')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="jobTitle">Job Title</Label>
                     <Input
                       id="jobTitle"
-                      {...register("jobTitle")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('jobTitle')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
-                      {...register("email")}
+                      {...register('email')}
                       type="email"
-                      className={isEditing ? "border-purple-200" : ""}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone</Label>
                     <Input
                       id="phone"
-                      {...register("phone")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('phone')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="location">Location</Label>
                     <Input
                       id="location"
-                      {...register("location")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('location')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="website">Website</Label>
                     <Input
                       id="website"
-                      {...register("website")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('website')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                 </div>
@@ -290,7 +286,7 @@ export default function ProfilePage() {
                   </CardHeader>
                   <CardContent className="pt-6">
                     <Textarea
-                      className={`min-h-32 ${isEditing ? "border-purple-200" : ""}`}
+                      className={`min-h-32 ${isEditing ? 'border-purple-200' : ''}`}
                       placeholder="Write something about yourself..."
                       defaultValue="Senior Frontend Developer with over 5 years of experience building modern web applications. Passionate about creating intuitive user interfaces and optimizing web performance. Experienced in React, TypeScript, and Next.js. Currently looking for new opportunities in tech companies with innovative products."
                       disabled={!isEditing}
@@ -320,7 +316,7 @@ export default function ProfilePage() {
                           <Input
                             defaultValue="https://linkedin.com/in/luamsilva"
                             disabled={!isEditing}
-                            className={isEditing ? "border-purple-200" : ""}
+                            className={isEditing ? 'border-purple-200' : ''}
                           />
                         </div>
                       </div>
@@ -330,7 +326,7 @@ export default function ProfilePage() {
                           <Input
                             defaultValue="https://github.com/luamsilva"
                             disabled={!isEditing}
-                            className={isEditing ? "border-purple-200" : ""}
+                            className={isEditing ? 'border-purple-200' : ''}
                           />
                         </div>
                       </div>
@@ -340,7 +336,7 @@ export default function ProfilePage() {
                           <Input
                             defaultValue="https://twitter.com/luamsilva"
                             disabled={!isEditing}
-                            className={isEditing ? "border-purple-200" : ""}
+                            className={isEditing ? 'border-purple-200' : ''}
                           />
                         </div>
                       </div>
@@ -350,7 +346,7 @@ export default function ProfilePage() {
                           <Input
                             defaultValue="https://luamsilva.dev"
                             disabled={!isEditing}
-                            className={isEditing ? "border-purple-200" : ""}
+                            className={isEditing ? 'border-purple-200' : ''}
                           />
                         </div>
                       </div>
@@ -494,7 +490,7 @@ export default function ProfilePage() {
                         <div className="space-y-0.5">
                           <Label>Open to Work</Label>
                           <p className="text-sm text-muted-foreground">
-                            Show recruiters you're open to new opportunities
+                            Show recruiters youre open to new opportunities
                           </p>
                         </div>
                         <Switch defaultChecked={true} />
@@ -527,7 +523,7 @@ export default function ProfilePage() {
                           id="location"
                           defaultValue="São Paulo, Brazil"
                           disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
+                          className={isEditing ? 'border-purple-200' : ''}
                         />
                       </div>
                       <div className="space-y-2">
@@ -536,7 +532,7 @@ export default function ProfilePage() {
                           id="salary"
                           defaultValue="R$ 120,000"
                           disabled={!isEditing}
-                          className={isEditing ? "border-purple-200" : ""}
+                          className={isEditing ? 'border-purple-200' : ''}
                         />
                       </div>
                     </div>
@@ -612,7 +608,7 @@ export default function ProfilePage() {
                             type="email"
                             defaultValue="luam.silva@example.com"
                             disabled={!isEditing}
-                            className={isEditing ? "border-purple-200" : ""}
+                            className={isEditing ? 'border-purple-200' : ''}
                           />
                         </div>
                         <div className="space-y-2">
@@ -622,7 +618,7 @@ export default function ProfilePage() {
                             type="password"
                             defaultValue="••••••••••••"
                             disabled={!isEditing}
-                            className={isEditing ? "border-purple-200" : ""}
+                            className={isEditing ? 'border-purple-200' : ''}
                           />
                         </div>
                       </div>
@@ -647,5 +643,5 @@ export default function ProfilePage() {
         </main>
       </div>
     </div>
-  );
+  )
 }
