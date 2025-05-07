@@ -1,11 +1,11 @@
 import { PrismaJobsRepository } from '@/repositories/prisma/prisma-jobs-repository'
-import { FetchJobsHistoryUseCase } from '../fetch-jobs'
 import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
+import { FetchJobsUseCase } from '../fetch-jobs'
 
-export async function makeFetchJobsHistoryUseCase() {
+export async function makeFetchJobsUseCase() {
   const prismaJobsRepository = new PrismaJobsRepository()
   const prismaUsersRepository = new PrismaUsersRepository()
-  const fetchJobsHistoryUseCase = new FetchJobsHistoryUseCase(
+  const fetchJobsHistoryUseCase = new FetchJobsUseCase(
     prismaJobsRepository,
     prismaUsersRepository,
   )

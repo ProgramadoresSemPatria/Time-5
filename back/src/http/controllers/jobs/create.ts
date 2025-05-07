@@ -1,8 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { CreateJobUseCase } from '../../../use-cases/create-job'
-import { PrismaJobsRepository } from '../../../repositories/prisma/prisma-jobs-repository'
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
+import { makeCreateJobUseCase } from '@/use-cases/factories/make-create-job-use-case'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createJobBodySchema = z.object({
@@ -18,7 +16,6 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     link: z.string(),
   })
 
-  // eslint-disable-next-line
   const { companyName, application_status, description, link } =
     createJobBodySchema.parse(request.body)
 
@@ -27,13 +24,10 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     return reply.status(401).send({ error: 'Unauthorized' })
   }
 
-  const jobsRepository = new PrismaJobsRepository()
-  const usersRepository = new PrismaUsersRepository()
-  const createJobUseCase = new CreateJobUseCase(jobsRepository, usersRepository)
+  const createJobUseCase = makeCreateJobUseCase()
 
   await createJobUseCase.execute({
     companyName,
-    // eslint-disable-next-line
     application_status,
     description,
     link,
