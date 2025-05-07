@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useState } from "react";
 
 interface DashboardHeaderProps {
   username: string;
@@ -17,13 +18,20 @@ interface DashboardHeaderProps {
 
 export default function DashboardHeader({ username }: DashboardHeaderProps) {
   const initials = username.charAt(0).toUpperCase();
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <header className="border-b border-purple-100 bg-white sticky top-0 z-10">
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center gap-4 lg:gap-6">
           <div className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-purple-800">
+            <Button
+              type="button"
+              onClick={() => setSidebarOpen((prev) => !prev)}
+              variant="ghost"
+              size="icon"
+              className="text-purple-800"
+            >
               <span className="sr-only">Toggle menu</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
