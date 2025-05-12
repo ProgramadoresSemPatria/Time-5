@@ -1,11 +1,11 @@
 import { ArrowRight } from 'lucide-react'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 
 export default function CtaSection() {
   return (
     <section className="py-20 bg-primary text-primary-foreground">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+        <div className="flex flex-col items-center justify-center text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
             Take control of your job search today.
           </h2>
@@ -14,7 +14,7 @@ export default function CtaSection() {
             applications, build standout resumes, and land their next
             opportunity.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row sm:justify-center gap-4">
             <Button size="lg" variant="secondary" className="font-medium">
               Start Your Free Trial
               <ArrowRight className="ml-2 h-4 w-4" />

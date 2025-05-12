@@ -27,13 +27,13 @@ import {
   Upload,
   Edit,
   Save,
-} from "lucide-react";
-import DashboardHeader from "@/components/dashboard-header";
-import SkillBadge from "@/components/skill-badge";
-import ExperienceItem from "@/components/experience-item";
-import EducationItem from "@/components/education-item";
-import ResumeItem from "@/components/resume-item";
-import { useForm } from "react-hook-form";
+} from 'lucide-react'
+import DashboardHeader from '@/components/dashboard-header'
+import SkillBadge from '@/components/skill-badge'
+import ExperienceItem from '@/components/experience-item'
+import EducationItem from '@/components/education-item'
+import ResumeItem from '@/components/resume-item'
+import { useForm } from 'react-hook-form'
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false)
@@ -125,23 +125,23 @@ export default function ProfilePage() {
   ]
 
   type ProfileFormData = {
-    name: string;
-    jobTitle: string;
-    email: string;
-    phone: string;
-    location: string;
-    website: string;
-  };
+    name: string
+    jobTitle: string
+    email: string
+    phone: string
+    location: string
+    website: string
+  }
 
   const handleFormSubmit = (formData) => {
-    console.log(formData);
-  };
+    console.log(formData)
+  }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProfileFormData>();
+  } = useForm<ProfileFormData>()
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -190,49 +190,49 @@ export default function ProfilePage() {
                     <Label htmlFor="fullName">Full Name</Label>
                     <Input
                       id="fullName"
-                      {...register("name")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('name')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="jobTitle">Job Title</Label>
                     <Input
                       id="jobTitle"
-                      {...register("jobTitle")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('jobTitle')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
-                      {...register("email")}
+                      {...register('email')}
                       type="email"
-                      className={isEditing ? "border-purple-200" : ""}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone</Label>
                     <Input
                       id="phone"
-                      {...register("phone")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('phone')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="location">Location</Label>
                     <Input
                       id="location"
-                      {...register("location")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('location')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="website">Website</Label>
                     <Input
                       id="website"
-                      {...register("website")}
-                      className={isEditing ? "border-purple-200" : ""}
+                      {...register('website')}
+                      className={isEditing ? 'border-purple-200' : ''}
                     />
                   </div>
                 </div>
