@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 import { Menu, X } from 'lucide-react'
 import Logo from '@/../assets/logo-transparent.png'
 
@@ -44,12 +44,14 @@ export default function NewHeader() {
 
         <div className="hidden md:flex items-center gap-4">
           <NavLink to={'/sign-in'}>
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="cursor-pointer">
               Log in
             </Button>
           </NavLink>
           <NavLink to={'/sign-up'}>
-            <Button size="sm">Get Started</Button>
+            <Button size="sm" className="cursor-pointer">
+              Get Started
+            </Button>
           </NavLink>
         </div>
 
