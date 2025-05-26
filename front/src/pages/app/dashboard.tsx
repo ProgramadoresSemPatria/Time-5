@@ -2,7 +2,7 @@ import { ColumnContainer } from '@/components/column/column'
 import { Column } from '@/components/column/types'
 import { JobCard } from '@/components/job-card/job-card'
 import { JobCard as JobCardType } from '@/components/job-card/types'
-import { Button } from '@/components/ui/button'
+import { JobDialog } from '@/components/job-dialog/JobDialog'
 import { Input } from '@/components/ui/input'
 
 import { fetchJobs, fetchKanbanJobs, updateKanbanJobs } from '@/services/jobs'
@@ -17,7 +17,7 @@ import {
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { Plus, Search } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 
@@ -151,10 +151,7 @@ export function Dashboard() {
               />
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             </div>
-            <Button className="bg-violet-600 hover:bg-violet-700 rounded-lg flex items-center gap-2">
-              <Plus className="h-4 w-4" />
-              Add new job
-            </Button>
+            <JobDialog />
           </div>
 
           <div className="mt-7 flex gap-4">
