@@ -32,3 +32,10 @@ export interface Job {
 export interface JobsResponse {
   jobs: Job[]
 }
+
+export interface CreateJob {
+  companyName: string
+  application_status: ApplicationStatus
+  description?: string
+  link?: string
+}

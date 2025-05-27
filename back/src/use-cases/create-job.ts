@@ -6,8 +6,8 @@ import { ResourceNotFoundError } from '@/errors/resource-not-found'
 interface CreateJobUseCaseRequest {
   companyName: string
   application_status?: JobStatus
-  description: string
-  link: string
+  description?: string
+  link?: string
   userId: string
 }
 
