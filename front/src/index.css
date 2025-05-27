@@ -3,6 +3,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Adiciona scroll suave para toda a página */
+html {
+  scroll-behavior: smooth;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
