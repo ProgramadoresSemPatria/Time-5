@@ -34,7 +34,7 @@ export function JobDialog() {
             Register your new job application
           </DialogDescription>
         </DialogHeader>
-        <CreateJobForm />
+        <CreateJobForm closeModal={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   )

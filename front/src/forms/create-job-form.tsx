@@ -13,30 +13,54 @@ import {
 import { Controller, useForm } from 'react-hook-form'
 import { CreateJobFormData, createJobSchema } from '@/schemas/CreateJobSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import { createJob } from '@/services/jobs'
+import toast from 'react-hot-toast'
+import { toastSuccessStyle } from '@/lib/toast-success-style'
+import { queryClient } from '@/lib/react-query'
+import { toastErrorStyle } from '@/lib/toast-error-style'
+import { ApiError } from '@/types/error'
 
-// interface CreateJobFormProps {
-//   documentData: Document
-//   closeModal: () => void
-// }
+interface CreateJobFormProps {
+  closeModal: () => void
+}
 
-export function CreateJobForm() {
+export function CreateJobForm({ closeModal }: CreateJobFormProps) {
   const {
     register,
     handleSubmit,
     reset,
-    setValue,
     control,
     formState: { errors },
   } = useForm<CreateJobFormData>({
     resolver: zodResolver(createJobSchema),
     defaultValues: {
-      status: 'APPLIED', // adiciona isso
+      application_status: 'APPLIED',
+    },
+  })
+
+  const createJobMutation = useMutation({
+    mutationFn: createJob,
+    onSuccess: () => {
+      toast.success('Application added successfully!', toastSuccessStyle)
+      reset()
+      closeModal()
+      queryClient.invalidateQueries({ queryKey: ['jobCards'] })
     },
   })
 
   async function onSubmit(data: CreateJobFormData) {
-    console.log(data)
-    console.log('eai')
+    try {
+      await createJobMutation.mutateAsync(data)
+    } catch (error) {
+      const errorMessage = (error as ApiError)?.message
+      toast.error(
+        errorMessage
+          ? `Ocurred an error at your application creation, details: ${errorMessage}. Please contact the support.`
+          : 'Ocurred an error at application creation. Please contact the support.',
+        toastErrorStyle,
+      )
+    }
   }
 
   return (
@@ -55,7 +79,7 @@ export function CreateJobForm() {
         <Label>Status</Label>
         <Controller
           control={control}
-          name="status"
+          name="application_status"
           render={({ field }) => (
             <Select value={field.value} onValueChange={field.onChange}>
               <SelectTrigger className="w-full">
@@ -88,7 +112,9 @@ export function CreateJobForm() {
       </div>
 
       <DialogFooter>
-        <Button type="submit">Create</Button>
+        <Button type="submit" className="bg-violet-600 hover:bg-violet-700">
+          Create
+        </Button>
       </DialogFooter>
     </form>
   )
