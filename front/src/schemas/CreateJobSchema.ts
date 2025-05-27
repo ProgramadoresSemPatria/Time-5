@@ -3,9 +3,8 @@ import { z } from 'zod'
 export const createJobSchema = z.object({
   companyName: z
     .string()
-    .min(3, 'Please type a company name with more then 3 characters')
-    .optional(),
-  status: z.enum([
+    .min(3, 'Please type a company name with more then 3 characters'),
+  application_status: z.enum([
     'APPLIED',
     'INTERVIEWING',
     'OFFERED',

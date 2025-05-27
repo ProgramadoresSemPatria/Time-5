@@ -13,7 +13,6 @@ import toast from "react-hot-toast";
 import { toastSuccessStyle } from "@/lib/toast-success-style";
 import { useContext } from "react";
 import { authContext } from "@/context/auth-context";
-import { useNavigate } from "react-router-dom";
 
 export default function DashboardSidebar() {
   const { signOut } = useContext(authContext)
