@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { Menu, X } from 'lucide-react'
-import Logo from '@/../assets/logo-transparent.png'
 
 export default function NewHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -29,8 +28,13 @@ export default function NewHeader() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-none">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src={Logo} alt="logo" className="h-40" />
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-sm">CM</span>
+              </div>
+              <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Career Manager
+              </span>
             </Link>
           </div>
 
@@ -112,14 +116,20 @@ export default function NewHeader() {
                 Pricing
               </a>
               <div className="flex flex-col gap-2 pt-4 border-t">
-                <Link to="/auth">
-                  <Button variant="ghost" className="w-full">
-                    Sign in
+                <NavLink to={'/sign-in'}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full cursor-pointer"
+                  >
+                    Log in
                   </Button>
-                </Link>
-                <Link to="/auth">
-                  <Button className="w-full">Get Started</Button>
-                </Link>
+                </NavLink>
+                <NavLink to={'/sign-up'}>
+                  <Button size="sm" className="w-full cursor-pointer">
+                    Get Started
+                  </Button>
+                </NavLink>
               </div>
             </nav>
           </div>

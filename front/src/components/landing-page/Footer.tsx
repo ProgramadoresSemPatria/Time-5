@@ -1,27 +1,24 @@
 import githubIcon from '@/../assets/github-icon.png'
-import Logo from '@/../assets/logo-transparent.png' // Importe a mesma imagem que você usa no cabeçalho
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="w-full bg-muted py-12">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* Seção Principal do Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
-          {/* Coluna da esquerda - Logo e Descrição */}
-          <div className="md:col-span-5">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-                <img
-                  src={Logo}
-                  alt="Career Manager Logo"
-                  className="h-full w-full object-contain"
-                />
+    <footer className="w-full bg-gradient-to-br from-slate-50 to-blue-50 border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+          {/* Left Column - Brand and Description */}
+          <div className="lg:col-span-5">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-lg">CM</span>
               </div>
-              <span className="font-bold text-xl">Career Manager</span>
+              <span className="font-bold text-2xl bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Career Manager
+              </span>
             </div>
-            <p className="text-muted-foreground mb-4 max-w-md">
+            <p className="text-slate-600 mb-6 max-w-lg leading-relaxed text-lg">
               Career Manager helps you streamline your job search, organize your
               applications, and create professional resumes—all in one place.
             </p>
@@ -30,22 +27,24 @@ export default function Footer() {
                 href="https://github.com/ProgramadoresSemPatria/Time-5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:opacity-80"
               >
                 <img src={githubIcon} alt="github icon" className="h-6" />
               </a>
             </div>
           </div>
 
-          {/* Colunas do meio e direita - Links */}
-          <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+          {/* Right Columns - Navigation Links */}
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
+            {/* Product Column */}
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-3">
+              <h3 className="font-semibold text-slate-900 mb-6 text-lg">
+                Product
+              </h3>
+              <ul className="space-y-4">
                 <li>
                   <a
                     href="#features"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
                     Features
                   </a>
@@ -53,7 +52,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#testimonials"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
                     Testimonials
                   </a>
@@ -61,7 +60,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#pricing"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
                     Pricing
                   </a>
@@ -69,53 +68,67 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Company Column */}
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-3">
+              <h3 className="font-semibold text-slate-900 mb-6 text-lg">
+                Company
+              </h3>
+              <ul className="space-y-4">
                 <li>
                   <a
                     href="#about"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
                     About Us
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#contact"
-                    className="text-muted-foreground hover:text-foreground"
+                    href="#careers"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
-                    Contact
+                    Careers
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#careers"
-                    className="text-muted-foreground hover:text-foreground"
+                    href="#contact"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
-                    Careers
+                    Contact
                   </a>
                 </li>
               </ul>
             </div>
 
+            {/* Support Column */}
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-3">
+              <h3 className="font-semibold text-slate-900 mb-6 text-lg">
+                Support
+              </h3>
+              <ul className="space-y-4">
+                <li>
+                  <a
+                    href="#help"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
+                  >
+                    Help Center
+                  </a>
+                </li>
                 <li>
                   <a
                     href="#privacy"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
-                    Privacy
+                    Privacy Policy
                   </a>
                 </li>
                 <li>
                   <a
                     href="#terms"
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-slate-600 hover:text-purple-600 transition-colors duration-200 block py-1"
                   >
-                    Terms
+                    Terms of Service
                   </a>
                 </li>
               </ul>
@@ -123,12 +136,17 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Linha divisória */}
-        <div className="w-full border-t border-border my-8" />
+        {/* Divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent my-8" />
 
-        {/* Rodapé com Copyright */}
-        <div className="text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Career Manager. All rights reserved.</p>
+        {/* Copyright Footer */}
+        <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <p className="text-slate-500 text-sm">
+            &copy; {currentYear} Career Manager. All rights reserved.
+          </p>
+          <div className="flex items-center space-x-6 text-sm text-slate-500">
+            <span>Made with ❤️ for job seekers</span>
+          </div>
         </div>
       </div>
     </footer>
