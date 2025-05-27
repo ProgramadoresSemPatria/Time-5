@@ -4,11 +4,12 @@ import { motion } from 'framer-motion'
 
 export default function HeroSection() {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-background to-muted/30">
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+    <section className="w-full py-20 md:py-28 bg-gradient-to-b from-background to-muted/30">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-start">
+          {/* Coluna da esquerda com texto */}
           <motion.div
-            className="flex flex-col justify-center space-y-4"
+            className="flex flex-col justify-start space-y-4"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -23,7 +24,7 @@ export default function HeroSection() {
                 Resume Management Made Simple
               </motion.h1>
               <motion.p
-                className="max-w-[600px] text-muted-foreground md:text-xl flex flex-col sm:flex-row gap-3 items-center sm:items-start sm:justify-center"
+                className="max-w-[600px] text-muted-foreground md:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
@@ -33,7 +34,7 @@ export default function HeroSection() {
               </motion.p>
             </div>
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 items-center sm:items-start sm:justify-center"
+              className="flex flex-col sm:flex-row gap-3 items-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -52,27 +53,28 @@ export default function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.6 }}
             >
-              No credit card required. 14-day free trial.
+              No credit card required.
             </motion.p>
           </motion.div>
 
+          {/* Coluna da direita com vídeo */}
           <motion.div
-            className="flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+            className="relative aspect-video rounded-lg overflow-hidden shadow-xl"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
           >
-            <div className="relative w-full max-w-[500px] aspect-video rounded-xl overflow-hidden shadow-2xl">
-              <video
-                src="/Exemplo.mp4"
-                autoPlay
-                muted
-                loop
-                controls
-                playsInline
-                className="object-cover w-full h-full"
-              />
-            </div>
+            <video
+              autoPlay
+              muted
+              loop
+              controls
+              playsInline
+              className="w-full h-full object-cover rounded-lg"
+            >
+              <source src="/Exemplo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </motion.div>
         </div>
       </div>

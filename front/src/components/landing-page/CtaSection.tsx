@@ -3,8 +3,8 @@ import { Button } from '../ui/button'
 
 export default function CtaSection() {
   return (
-    <section className="py-20 bg-primary text-primary-foreground">
-      <div className="container px-4 md:px-6">
+    <section className="w-full py-20 bg-primary text-primary-foreground">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center text-center space-y-6 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
             Take control of your job search today.

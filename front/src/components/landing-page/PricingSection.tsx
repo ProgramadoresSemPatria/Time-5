@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Button } from '../ui/button'
 import {
   Card,
@@ -59,8 +60,8 @@ export default function PricingSection() {
   ]
 
   return (
-    <section id="pricing" className="py-20 bg-background">
-      <div className="container px-4 md:px-6">
+    <section id="pricing" className="w-full py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
             Simple, Transparent Pricing
