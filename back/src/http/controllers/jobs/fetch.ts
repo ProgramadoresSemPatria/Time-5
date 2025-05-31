@@ -1,10 +1,10 @@
-import { makeFetchJobsHistoryUseCase } from '@/use-cases/factories/make-fetch-jobs-use-case'
+import { makeFetchJobsUseCase } from '@/use-cases/factories/make-fetch-jobs-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function fetchJobs(request: FastifyRequest, reply: FastifyReply) {
-  const fetchJobsHistoryUseCase = await makeFetchJobsHistoryUseCase()
+  const fetchJobsUseCase = await makeFetchJobsUseCase()
 
-  const { jobs } = await fetchJobsHistoryUseCase.execute({
+  const { jobs } = await fetchJobsUseCase.execute({
     userId: request.user.sub,
   })
 

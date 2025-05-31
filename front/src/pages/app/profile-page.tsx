@@ -280,7 +280,6 @@ export default function ProfilePage() {
                     )}
                   </CardContent>
                 </Card>
-
                 <Card className="lg:col-span-3 border-purple-100">
                   <CardHeader className="bg-purple-50 border-b border-purple-100">
                     <CardTitle>About Me</CardTitle>

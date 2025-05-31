@@ -9,7 +9,9 @@
     "dev": "tsx watch src/server.ts",
     "test": "npx vitest run",
     "test:watch": "npx vitest",
-    "build": "tsup src --out-dir build"
+    "build": "tsup src --out-dir build",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
   },
   "keywords": [],
   "author": "",

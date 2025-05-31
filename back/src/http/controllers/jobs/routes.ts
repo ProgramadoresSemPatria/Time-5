@@ -5,12 +5,17 @@ import { getJob } from './get'
 import { deleteJob } from './delete'
 import { updateJob } from './update'
 import { fetchJobs } from './fetch'
+import { fetchKanbanJobs } from './fetch-kanban'
+import { updateKanbanJobs } from './update-kanban-jobs'
 
 export async function jobsRoutes(app: FastifyInstance) {
   app.get('/jobs/:jobId', { onRequest: [verifyJWT] }, getJob)
   app.get('/jobs', { onRequest: [verifyJWT] }, fetchJobs)
+  app.get('/kanbanjobs', { onRequest: [verifyJWT] }, fetchKanbanJobs)
 
   app.post('/jobs', { onRequest: [verifyJWT] }, create)
   app.post('/jobs/:jobId', { onRequest: [verifyJWT] }, deleteJob)
+
   app.put('/jobs/:jobId', { onRequest: [verifyJWT] }, updateJob)
+  app.put('/kanbanjobs', { onRequest: [verifyJWT] }, updateKanbanJobs)
 }

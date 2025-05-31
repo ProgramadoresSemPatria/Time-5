@@ -65,7 +65,8 @@ html {
     --destructive: oklch(0.606 0.233 29.2);
     --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(0.91 0.02 250.4);
-    --input: oklch(0.91 0.02 250.4);
+    //--input: oklch(0.91 0.02 250.4);
+    --input: oklch(1 0 0); 
     --ring: oklch(0.678 0.257 276.8);
     --radius: 0.5rem;
     --chart-1: oklch(0.685 0.211 47.6);

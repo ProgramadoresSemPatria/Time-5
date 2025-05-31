@@ -11,7 +11,7 @@ interface FetchJobsHistoryUseCaseResponse {
   jobs: Job[]
 }
 
-export class FetchJobsHistoryUseCase {
+export class FetchJobsUseCase {
   constructor(
     private jobsrepository: JobsRepository,
     private usersRepository: UsersRepository,
