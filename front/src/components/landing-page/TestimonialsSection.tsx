@@ -1,4 +1,5 @@
-import { Card, CardContent } from './ui/card'
+/* eslint-disable react/no-unescaped-entities */
+import { Card, CardContent } from '../ui/card'
 import { Quote } from 'lucide-react'
 
 export default function TestimonialsSection() {
@@ -24,8 +25,8 @@ export default function TestimonialsSection() {
   ]
 
   return (
-    <section id="testimonials" className="py-20 bg-muted/30">
-      <div className="container px-4 md:px-6">
+    <section id="testimonials" className="w-full py-20 bg-muted/30">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
             Loved by People Everywhere
